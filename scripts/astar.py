@@ -262,6 +262,13 @@ if __name__ == '__main__':
         astar_world_path.append(tuple(center_offset(node_to_world_pos(node))))
     rospy.loginfo(f"\nA-star Node Path:\n {print_astar_node_path}")
     rospy.loginfo(f"\nA-star World Path:\n {astar_world_path}")
+    map_for_print = map2d
+    for i, j in astar_node_path:
+        map_for_print[i, (grid_size[0] - 1) - j] = 5
+    map_for_print = np.flip(map2d.T, axis=0)
+    string_map = str(map_for_print).replace(' [', '').replace('[', '').replace(']', '').replace('0', ' ').replace('5', '*')
+    # rospy.loginfo(f"\nMap:\n{map_for_print}")
+    rospy.loginfo(f"\nMap:\n{string_map}")
 
     # Used for following turtlebot on hardcoded path
     # hardcoded_world_path = []
