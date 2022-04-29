@@ -57,8 +57,14 @@ def node_to_world_pos(node: np.ndarray):
 
 
 def center_offset(vec):
-    offset_x = 0
-    offset_y = -0.2
+    if(vec[0] < 0):
+        offset_x = 0.5
+    else:
+        offset_x = -0.5
+    if (vec[1] < 0):
+        offset_y = 0.5
+    else:
+        offset_y = -0.5
     return np.array([vec[0] + offset_x, vec[1] + offset_y])
 
 
@@ -268,7 +274,7 @@ if __name__ == '__main__':
     plt.plot(np.where(map2d == 0)[0], np.where(map2d == 0)[1], marker='.', color='blue', linestyle="")
     plt.plot(np.where(map2d == 1)[0], np.where(map2d == 1)[1], marker='s', color='black', linestyle="")
     plt.plot(astar_node_path[:, 0], (grid_size[0] - 1) - astar_node_path[:, 1], marker='o', color='red')
-    plt.title("Close this window to start turtlebot")
+    plt.title("Close this window to start path execution")
     plt.show()
     rospy.loginfo("Initiating Path Execution.")
     init(astar_world_path)
