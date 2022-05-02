@@ -4,6 +4,7 @@ import rospy
 from geometry_msgs.msg import Twist, Quaternion, Point
 from nav_msgs.msg import Odometry
 import tf
+import time
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -62,7 +63,7 @@ def center_offset(vec):
     else:
         offset_x = -0.5
     if (vec[1] < 0):
-        offset_y = 0.5
+        offset_y = 0.2
     else:
         offset_y = -0.5
     return np.array([vec[0] + offset_x, vec[1] + offset_y])
@@ -218,10 +219,10 @@ def init(world_path: list):
             current_node += 1
         twist_msg = Twist()
         yaw_kp = np.min([np.abs(rel_yaw), 2]) / 2
-        if (current_node == len(world_path) - 1):
-            dist_kp = np.min([distance, 0.5]) / 0.5
-        else:
-            dist_kp = 1
+        # if (current_node == len(world_path) - 1):
+        dist_kp = np.min([distance, 0.5]) / 0.5
+        # else:
+        #     dist_kp = 1
         if (rel_yaw < -np.deg2rad(yaw_thresh) and distance > 0.05):
             twist_msg.angular.z = -10 * yaw_kp
 
@@ -281,7 +282,9 @@ if __name__ == '__main__':
     plt.plot(np.where(map2d == 0)[0], np.where(map2d == 0)[1], marker='.', color='blue', linestyle="")
     plt.plot(np.where(map2d == 1)[0], np.where(map2d == 1)[1], marker='s', color='black', linestyle="")
     plt.plot(astar_node_path[:, 0], (grid_size[0] - 1) - astar_node_path[:, 1], marker='o', color='red')
-    plt.title("Close this window to start path execution")
-    plt.show()
+    plt.title("This window will close after 3 seconds")
+    plt.show(block=False)
+    plt.pause(3)
+    plt.close("all")
     rospy.loginfo("Initiating Path Execution.")
     init(astar_world_path)
