@@ -1,7 +1,0 @@
-<launch>
-	<node name="stage" pkg="stage_ros" type="stageros" args="$(find lab8)/world/playground.world" />
-	<node name="astar" pkg="lab8" type="astar.py" output="screen">
-		<rosparam param="goalx">4.5</rosparam>
-		<rosparam param="goaly">9.0</rosparam>
-	</node>
-</launch>

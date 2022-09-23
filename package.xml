@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>lab8</name>
+  <name>astar</name>
   <version>0.0.0</version>
   <description>Implementing Astar ALgorithm on stage world</description>
 
