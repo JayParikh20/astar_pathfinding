@@ -108,7 +108,7 @@ class Node:
 
 # A-star algorithm implementation
 def astar_pathfinder(bot_pos_in_node, goal_pos_in_node):
-    e = 1
+    e = 5
     open_nodes: list = []
     closed_nodes: list = []
     rospy.loginfo(f"bot_node: {bot_pos_in_node}, goal_node: {goal_pos_in_node}")
