@@ -15,4 +15,4 @@ roslaunch astar astar.launch
 ```
 
 ### A-star Demo
-![](https://github.com/JayParikh20/astar_pathfinding/blob/main/demo/astar_demo.gif)
+[astar.webm](https://user-images.githubusercontent.com/17924429/209715479-088a9220-3a80-431c-bfd9-18a0dd5c2ce8.webm)
